@@ -1,7 +1,7 @@
 #![cfg(feature = "sea-orm")]
 
 use caretta_id::CarettaId;
-use rand::Rng;
+use rand::RngExt as _;
 use sea_orm::{
     DatabaseBackend, MockDatabase, MockExecResult, Transaction,
     entity::{prelude::*, *},

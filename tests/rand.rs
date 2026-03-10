@@ -2,7 +2,6 @@
 mod common;
 use caretta_id::*;
 use common::*;
-use rand::Rng;
 
 #[test]
 fn random() {
@@ -29,6 +28,8 @@ fn random_str() {
     for _ in 0..10 {
         let mut buf = ['0'; 7];
         for i in 0..6 {
+            use rand::RngExt as _;
+
             let c = rng.sample(rand::distr::Alphanumeric) as char;
             buf[i] = c;
         }
