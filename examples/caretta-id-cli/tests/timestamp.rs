@@ -1,4 +1,4 @@
-use caretta_id::{CarettaId, CarettaIdD, CarettaIdQ, CarettaIdS, CarettaIdT};
+use caretta_id::CarettaId;
 use std::{path::PathBuf, process::Command};
 
 #[test]

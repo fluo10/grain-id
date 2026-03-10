@@ -1,5 +1,3 @@
-use crate::triplet::TripletError;
-
 /// A general error that can occur when working with caretta-ids.
 #[derive(Clone, Debug, Eq, Hash, PartialEq, thiserror::Error)]
 pub enum Error {
@@ -27,13 +25,4 @@ pub enum Error {
         expected_with_delimiter: Option<usize>,
         found: usize,
     },
-    #[deprecated(since = "0.8.0")]
-    #[error("Invalid delimiter: expected: '-' or '_', found {character} at {index}")]
-    ParseDelimiter { character: char, index: usize },
-    #[deprecated(since = "0.8.0")]
-    #[error("Invalid triplet: source: {source}, index: {index}")]
-    ParseTriplet { source: TripletError, index: usize },
-    #[deprecated(since = "0.8.0")]
-    #[error("Invalid character: expected alphanumeric character, found {character} at {index}")]
-    ParseCharacter { character: char, index: usize },
 }

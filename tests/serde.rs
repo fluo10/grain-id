@@ -1,9 +1,7 @@
 //! Test for serde feature
 #![cfg(feature = "serde")]
 
-use caretta_id::{CarettaId, CarettaIdD, CarettaIdQ, CarettaIdS, CarettaIdT};
-
-use serde::{Deserialize, Serialize};
+use caretta_id::CarettaId;
 
 use serde_test::assert_de_tokens;
 use serde_test::{Compact, Configure, Readable, Token, assert_ser_tokens, assert_tokens};
