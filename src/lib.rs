@@ -115,6 +115,9 @@ mod std;
 #[cfg(feature = "arbitrary")]
 mod arbitrary;
 
+#[cfg(feature = "schemars")]
+mod schemars;
+
 #[cfg(feature = "rand")]
 mod rand;
 
