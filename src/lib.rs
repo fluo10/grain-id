@@ -25,7 +25,7 @@
 //! Add this to your `Cargo.toml`:
 //! ```toml
 //! [dependencies]
-//! caretta-id = "0.11.0"
+//! caretta-id = "0.12.0"
 //!
 //! # With optional features
 //! caretta-id = { version = "0.11.0", features = ["arbitrary", "serde", "rusqlite", "sea-orm", "prost", "redb", "schemars"] }
@@ -37,7 +37,7 @@
 //! For `no_std` environment, you'll need to disable default features.
 //! ```toml
 //! [dependencies]
-//! caretta-id = { version = "0.11.0", default-features = false }
+//! caretta-id = { version = "0.12.0", default-features = false }
 //! ```
 //!
 //! # Features

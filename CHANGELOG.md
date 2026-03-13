@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 0.12.0 - 2026-03-14
+
+### Added
+
+- `increment()` method to `CarettaId` for wrapping increment by 1, enabling collision-free ID generation without sleeping when two IDs are generated within the same decisecond.
+
+### Changed
+
+- Fix CI workflows
+- Run `cargo fmt` and `cargo clippy`
+
+### Removed
+
+- (`caretta-id-cli`) Deprecated `generate` subcommand test
+
 ## 0.11.0 - 2026-03-11
 
 ### Changed
