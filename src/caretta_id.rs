@@ -524,6 +524,24 @@ impl CarettaId {
     pub const fn wrapping_sub(self, rhs: Self) -> Self {
         CarettaId::from_u64_lossy(self.to_u64().wrapping_sub(rhs.to_u64()))
     }
+
+    /// Increments the value by 1, wrapping around to [`CarettaId::NIL`] on overflow.
+    ///
+    /// # Examples
+    /// ```
+    /// # use caretta_id::*;
+    /// # fn main() -> Result<(), Error> {
+    /// assert_eq!(
+    ///     CarettaId::from_u64(100)?.increment(),
+    ///     CarettaId::from_u64(101)?
+    /// );
+    /// assert_eq!(CarettaId::MAX.increment(), CarettaId::NIL);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub const fn increment(self) -> Self {
+        CarettaId::from_u64_lossy(self.to_u64() + 1)
+    }
 }
 
 fn chars_to_u5s(value: [char; 7]) -> Result<[u8; 7], Error> {
