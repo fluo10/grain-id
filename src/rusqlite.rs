@@ -1,5 +1,8 @@
 use super::CarettaId;
-use rusqlite::{ToSql, types::{FromSql, ToSqlOutput, Value}};
+use rusqlite::{
+    ToSql,
+    types::{FromSql, ToSqlOutput, Value},
+};
 
 impl FromSql for CarettaId {
     fn column_result(value: rusqlite::types::ValueRef<'_>) -> rusqlite::types::FromSqlResult<Self> {
