@@ -14,5 +14,5 @@ readme = "README.md"
 anyhow = "1.0.100"
 chrono.workspace = true
 clap = { version = "4.5.48", features = ["derive"] }
-grain-id = { path = "../..", version = "0.12.1" }
+grain-id = { path = "../..", version = "0.13.0" }
 rand.workspace = true

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 0.13.0 - 2026-03-28
+
+### Changed
+
+- Rename crate from `caretta-id` to `grain-id`
+- Rename type `CarettaId` to `GrainId`
+- Rename module `caretta_id` to `grain_id`
+- Rename example `caretta-id-cli` to `grain-id-cli`
+- Rename example `caretta-id-prost-example` to `grain-id-prost-example`
+- Update proto submodule to `grain-id-proto`
+
 ## 0.12.1 - 2026-03-25
 
 ### Changed
