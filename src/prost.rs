@@ -1,4 +1,4 @@
-use crate::{GrainId, GrainIdProto, Error};
+use crate::{Error, GrainId, GrainIdProto};
 
 impl From<GrainId> for GrainIdProto {
     fn from(value: GrainId) -> Self {

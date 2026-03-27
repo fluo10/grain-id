@@ -1,6 +1,6 @@
-use grain_id::GrainId;
 use chrono::{DateTime, Local};
 use clap::Args;
+use grain_id::GrainId;
 
 use crate::option::{BaseTimeOption, BaseTimeOptionArgs};
 

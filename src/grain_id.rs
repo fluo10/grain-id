@@ -69,10 +69,7 @@ impl GrainId {
     /// # use grain_id::*;
     /// # fn main() -> Result<(), Error> {
     /// assert_eq!(GrainId::MAX, "zzzzzzz".parse::<GrainId>()?);
-    /// assert_eq!(
-    ///     GrainId::MAX,
-    ///     GrainId::try_from(GrainId::CAPACITY - 1)?
-    /// );
+    /// assert_eq!(GrainId::MAX, GrainId::try_from(GrainId::CAPACITY - 1)?);
     /// # Ok(())
     /// # }
     /// ```
@@ -531,10 +528,7 @@ impl GrainId {
     /// ```
     /// # use grain_id::*;
     /// # fn main() -> Result<(), Error> {
-    /// assert_eq!(
-    ///     GrainId::from_u64(100)?.increment(),
-    ///     GrainId::from_u64(101)?
-    /// );
+    /// assert_eq!(GrainId::from_u64(100)?.increment(), GrainId::from_u64(101)?);
     /// assert_eq!(GrainId::MAX.increment(), GrainId::NIL);
     /// # Ok(())
     /// # }

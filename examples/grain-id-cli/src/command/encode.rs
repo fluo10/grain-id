@@ -1,5 +1,5 @@
-use grain_id::GrainId;
 use clap::Args;
+use grain_id::GrainId;
 
 /// Encode integer to grain-id string.
 #[derive(Args, Debug)]

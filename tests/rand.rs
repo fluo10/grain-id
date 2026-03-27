@@ -1,7 +1,7 @@
 #![cfg(feature = "rand")]
 mod common;
-use grain_id::*;
 use common::*;
+use grain_id::*;
 
 #[test]
 fn random() {
