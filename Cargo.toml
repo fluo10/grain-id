@@ -2,7 +2,7 @@
 name = "caretta-id"
 edition.workspace = true
 version.workspace = true
-description = "Random human-friendly id for personal distributed system"
+description = "Renamed to grain-id — see https://crates.io/crates/grain-id"
 categories = ["data-structures", "encoding", "no-std", "no-std::no-alloc"]
 license.workspace = true
 repository.workspace = true

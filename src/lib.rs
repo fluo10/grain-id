@@ -1,3 +1,7 @@
+//! > **This crate has been renamed to [`grain-id`](https://crates.io/crates/grain-id).**
+//! > Please migrate to `grain-id` — it is a drop-in replacement with the same functionality.
+//! > `caretta-id` will no longer receive updates.
+//!
 //! A human-friendly 7 characters identifier format (e.g. `123abcd`).
 //!
 //! For a language agnostic specification of the caretta-id format, see [SPECS.md](https://github.com/fluo10/caretta-id/blob/main/SPECS.md)
