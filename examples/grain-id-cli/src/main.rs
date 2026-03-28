@@ -3,7 +3,7 @@ mod option;
 
 use clap::{Parser, Subcommand};
 
-use crate::command::{DecodeArgs, EncodeArgs, RandomCommandArgs, TimestampArgs};
+use crate::command::{DecodeArgs, EncodeArgs, Md5Args, RandomCommandArgs, Sha1Args, Sha256Args, TimestampArgs};
 
 #[derive(Debug, Parser)]
 #[command(version, about, long_about, infer_subcommands = true)]
@@ -22,6 +22,9 @@ impl Cli {
 pub enum CliSubcommand {
     Decode(DecodeArgs),
     Encode(EncodeArgs),
+    Md5(Md5Args),
+    Sha1(Sha1Args),
+    Sha256(Sha256Args),
     Timestamp(TimestampArgs),
     Random(RandomCommandArgs),
 }
@@ -29,10 +32,13 @@ pub enum CliSubcommand {
 impl CliSubcommand {
     pub fn run(self) {
         match self {
-            CliSubcommand::Decode(decode_args) => decode_args.run(),
-            CliSubcommand::Encode(encode_args) => encode_args.run(),
-            CliSubcommand::Timestamp(timestamp_args) => timestamp_args.run(),
-            CliSubcommand::Random(random_command_args) => random_command_args.run(),
+            CliSubcommand::Decode(args) => args.run(),
+            CliSubcommand::Encode(args) => args.run(),
+            CliSubcommand::Md5(args) => args.run(),
+            CliSubcommand::Sha1(args) => args.run(),
+            CliSubcommand::Sha256(args) => args.run(),
+            CliSubcommand::Timestamp(args) => args.run(),
+            CliSubcommand::Random(args) => args.run(),
         }
     }
 }
