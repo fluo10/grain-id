@@ -1,5 +1,7 @@
 use super::*;
 use ::serde::{Deserialize, Serialize, de::Error};
+#[cfg(feature = "std")]
+use crate::GrainIdPrefix;
 
 impl Serialize for GrainId {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
@@ -41,6 +43,44 @@ impl<'de> Deserialize<'de> for GrainId {
         } else {
             let i = u64::deserialize(deserializer)?;
             GrainId::from_u64(i).map_err(D::Error::custom)
+        }
+    }
+}
+
+#[cfg(feature = "std")]
+impl Serialize for GrainIdPrefix {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: ::serde::Serializer,
+    {
+        if serializer.is_human_readable() {
+            serializer.serialize_str(&self.to_string())
+        } else {
+            use ::serde::ser::SerializeTuple;
+            let mut tup = serializer.serialize_tuple(2)?;
+            tup.serialize_element(&self.value())?;
+            tup.serialize_element(&self.len())?;
+            tup.end()
+        }
+    }
+}
+
+#[cfg(feature = "std")]
+impl<'de> Deserialize<'de> for GrainIdPrefix {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: ::serde::Deserializer<'de>,
+    {
+        if deserializer.is_human_readable() {
+            <String as Deserialize>::deserialize(deserializer)?
+                .parse::<GrainIdPrefix>()
+                .map_err(D::Error::custom)
+        } else {
+            let (value, len) = <(u64, u8) as Deserialize>::deserialize(deserializer)?;
+            if len > 7 {
+                return Err(D::Error::custom(crate::Error::InvalidLength(len as usize)));
+            }
+            Ok(GrainIdPrefix::new(value, len))
         }
     }
 }

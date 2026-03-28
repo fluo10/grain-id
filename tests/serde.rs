@@ -1,7 +1,7 @@
 //! Test for serde feature
 #![cfg(feature = "serde")]
 
-use grain_id::GrainId;
+use grain_id::{GrainId, GrainIdPrefix};
 
 use serde_test::assert_de_tokens;
 use serde_test::{Compact, Configure, Readable, Token, assert_ser_tokens, assert_tokens};
@@ -33,4 +33,33 @@ fn nil_compact() {
 #[test]
 fn max_compact() {
     assert_tokens_compact(&GrainId::MAX.compact(), &[Token::U64(0x7FFFFFFFF)]);
+}
+
+#[test]
+fn prefix_readable() {
+    let prefix: GrainIdPrefix = "a1".parse().unwrap();
+    assert_ser_tokens(&prefix.clone().readable(), &[Token::Str("a1")]);
+    assert_de_tokens(&prefix.readable(), &[Token::Str("a1")]);
+}
+
+#[test]
+fn prefix_empty_readable() {
+    let prefix: GrainIdPrefix = "".parse().unwrap();
+    assert_ser_tokens(&prefix.clone().readable(), &[Token::Str("")]);
+    assert_de_tokens(&prefix.readable(), &[Token::Str("")]);
+}
+
+#[test]
+fn prefix_compact() {
+    let prefix: GrainIdPrefix = "a1".parse().unwrap();
+    let min_value = u64::from(prefix.min());
+    assert_tokens(
+        &prefix.compact(),
+        &[
+            Token::Tuple { len: 2 },
+            Token::U64(min_value),
+            Token::U8(2),
+            Token::TupleEnd,
+        ],
+    );
 }

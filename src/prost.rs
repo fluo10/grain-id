@@ -1,4 +1,6 @@
 use crate::{Error, GrainId, GrainIdProto};
+#[cfg(feature = "std")]
+use crate::{GrainIdPrefix, GrainIdPrefixProto};
 
 impl From<GrainId> for GrainIdProto {
     fn from(value: GrainId) -> Self {
@@ -42,5 +44,51 @@ impl GrainId {
     /// ```
     pub fn from_proto_lossy(value: GrainIdProto) -> Self {
         Self::from_u64_lossy(value.value)
+    }
+}
+
+#[cfg(feature = "std")]
+impl From<GrainIdPrefix> for GrainIdPrefixProto {
+    fn from(prefix: GrainIdPrefix) -> Self {
+        Self {
+            value: prefix.value(),
+            len: prefix.len() as u32,
+        }
+    }
+}
+
+#[cfg(feature = "std")]
+impl TryFrom<GrainIdPrefixProto> for GrainIdPrefix {
+    type Error = Error;
+
+    fn try_from(proto: GrainIdPrefixProto) -> Result<Self, Self::Error> {
+        if proto.len > 7 {
+            return Err(Error::InvalidLength(proto.len as usize));
+        }
+        let len = proto.len as u8;
+        // Mask off any stray bits below the prefix range.
+        let value = if len == 0 {
+            0
+        } else {
+            let shift = 5 * (7 - len as u32);
+            (proto.value >> shift) << shift
+        };
+        Ok(GrainIdPrefix::new(value, len))
+    }
+}
+
+#[cfg(feature = "std")]
+impl GrainIdPrefix {
+    /// Converts a [`GrainIdPrefixProto`] to [`GrainIdPrefix`], clamping `len` to 7
+    /// and masking any stray low bits in `value`.
+    pub fn from_proto_lossy(proto: GrainIdPrefixProto) -> Self {
+        let len = (proto.len as u8).min(7);
+        let value = if len == 0 {
+            0
+        } else {
+            let shift = 5 * (7 - len as u32);
+            (proto.value >> shift) << shift
+        };
+        Self::new(value, len)
     }
 }
