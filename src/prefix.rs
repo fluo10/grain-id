@@ -39,7 +39,7 @@ use crate::{
 ///     prefix.max(),
 /// ])?;
 /// ```
-#[derive(Clone, Debug)]
+#[derive(Debug)]
 pub struct GrainIdPrefix {
     /// The prefix value stored in the high bits.
     ///
@@ -53,6 +53,19 @@ pub struct GrainIdPrefix {
 }
 
 impl GrainIdPrefix {
+    pub(crate) fn new(value: u64, len: u8) -> Self {
+        Self {
+            value,
+            len,
+            min: OnceLock::new(),
+            max: OnceLock::new(),
+        }
+    }
+
+    pub(crate) fn value(&self) -> u64 {
+        self.value
+    }
+
     /// Returns the number of characters in this prefix.
     pub fn len(&self) -> u8 {
         self.len

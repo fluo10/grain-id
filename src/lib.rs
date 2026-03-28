@@ -147,3 +147,7 @@ pub mod proto;
 /// Alias of [`proto::GrainId`]
 #[cfg(feature = "prost")]
 pub type GrainIdProto = proto::GrainId;
+
+/// Alias of [`proto::GrainIdPrefix`]
+#[cfg(all(feature = "prost", feature = "std"))]
+pub type GrainIdPrefixProto = proto::GrainIdPrefix;
