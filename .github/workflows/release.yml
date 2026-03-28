@@ -38,17 +38,17 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            binary: grain-id-cli
-            asset_name: grain-id-cli-linux-x86_64
+            binary: grain-id
+            asset_name: grain-id-linux-x86_64
           - os: macos-latest
-            binary: grain-id-cli
-            asset_name: grain-id-cli-macos-aarch64
+            binary: grain-id
+            asset_name: grain-id-macos-aarch64
           - os: windows-latest
-            binary: grain-id-cli.exe
-            asset_name: grain-id-cli-windows-x86_64.exe
+            binary: grain-id.exe
+            asset_name: grain-id-windows-x86_64.exe
           - os: ubuntu-24.04-arm
-            binary: grain-id-cli
-            asset_name: grain-id-cli-linux-aarch64
+            binary: grain-id
+            asset_name: grain-id-linux-aarch64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

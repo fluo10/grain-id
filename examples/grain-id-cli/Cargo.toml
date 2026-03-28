@@ -10,6 +10,10 @@ homepage.workspace = true
 keywords.workspace = true
 readme = "README.md"
 
+[[bin]]
+name = "grain-id"
+path = "src/main.rs"
+
 [dependencies]
 anyhow = "1.0.100"
 chrono.workspace = true
