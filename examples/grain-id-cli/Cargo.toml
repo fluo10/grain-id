@@ -18,7 +18,7 @@ path = "src/main.rs"
 anyhow = "1.0.100"
 chrono.workspace = true
 clap = { version = "4.5.48", features = ["derive"] }
-grain-id = { path = "../..", version = "0.13.0", features = ["digest"] }
+grain-id = { path = "../..", version = "0.14.0", features = ["digest"] }
 md-5 = { version = "0.10", default-features = false }
 rand.workspace = true
 sha1 = { version = "0.10", default-features = false }
@@ -26,7 +26,7 @@ sha2 = { version = "0.10", default-features = false }
 
 [dev-dependencies]
 digest = { version = "0.10", default-features = false }
-grain-id = { path = "../..", version = "0.13.0", features = ["digest"] }
+grain-id = { path = "../..", version = "0.14.0", features = ["digest"] }
 md-5 = { version = "0.10", default-features = false }
 sha1 = { version = "0.10", default-features = false }
 sha2 = { version = "0.10", default-features = false }

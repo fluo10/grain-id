@@ -29,10 +29,10 @@ grain-id bridges the gap between human readability and technical requirements.
 Add this to your `Cargo.toml`:
 ```toml
 [dependencies]
-grain-id = "0.13.0"
+grain-id = "0.14.0"
 
 # With optional features
-grain-id = { version = "0.13.0", features = ["arbitrary", "serde", "rusqlite", "sea-orm", "prost", "redb", "schemars"] }
+grain-id = { version = "0.14.0", features = ["arbitrary", "serde", "rusqlite", "sea-orm", "prost", "redb", "schemars"] }
 ```
 
 ### For no_std Environments
@@ -41,7 +41,7 @@ This crate support `no_std`.
 For `no_std` environment, you'll need to disable default features.
 ```toml
 [dependencies]
-grain-id = { version = "0.13.0", default-features = false }
+grain-id = { version = "0.14.0", default-features = false }
 ```
 
 ## Features
@@ -55,9 +55,10 @@ grain-id = { version = "0.13.0", default-features = false }
 ### Optional Feature Flags
 
 - `arbitrary`: `arbitrary::Arbitrary` support for fuzzing tests.
+- `digest`: Hash-based `GrainId` generation via `digest::Digest` trait.
 - `serde`: Serialization/deserialization support
 - `rusqlite`: SQLite database integration
-- `sea-orm`: SeaORM ORM integration  
+- `sea-orm`: SeaORM ORM integration
 - `prost`: Protocol Buffers support
 - `redb`: `redb` integration
 - `schemars`: JSON Schema support
