@@ -64,7 +64,7 @@ license = "MIT OR Apache-2.0"
 repository = "https://github.com/fluo10/grain-id"
 homepage = "https://github.com/fluo10/grain-id"
 keywords = ["id", "identifier", "uuid", "distributed", "human-readable"]
-version = "0.13.0"
+version = "0.14.0"
 
 [workspace.dependencies]
 chrono = "0.4.42"

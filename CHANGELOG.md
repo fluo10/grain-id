@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 0.14.0 - 2026-03-29
+
+### Added
+
+- `GrainIdPrefix` type for prefix-based range filtering
+- `GrainIdPrefix` support for `prost`, `serde`, and `schemars` features
+- Hash-based `GrainId` generation via `digest` feature (`GrainId::from_digest`)
+- (`grain-id-cli`) `md5`, `sha1`, `sha256` subcommands for hash-based ID generation
+
+### Changed
+
+- (`grain-id-cli`) Rename binary from `grain-id-cli` to `grain-id`
+
 ## 0.13.0 - 2026-03-28
 
 ### Changed
