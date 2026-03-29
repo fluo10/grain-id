@@ -3,7 +3,9 @@ mod option;
 
 use clap::{Parser, Subcommand};
 
-use crate::command::{DecodeArgs, EncodeArgs, Md5Args, RandomCommandArgs, Sha1Args, Sha256Args, TimestampArgs};
+use crate::command::{
+    DecodeArgs, EncodeArgs, Md5Args, RandomCommandArgs, Sha1Args, Sha256Args, TimestampArgs,
+};
 
 #[derive(Debug, Parser)]
 #[command(version, about, long_about, infer_subcommands = true)]

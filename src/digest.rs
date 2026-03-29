@@ -64,7 +64,7 @@ impl GrainId {
     where
         D: ::digest::ExtendableOutput + ::digest::Update + Default,
     {
-        use ::digest::{XofReader};
+        use ::digest::XofReader;
         let mut hasher = D::default();
         hasher.update(input);
         let mut reader = hasher.finalize_xof();

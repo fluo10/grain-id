@@ -1,7 +1,7 @@
 use super::*;
-use ::serde::{Deserialize, Serialize, de::Error};
 #[cfg(feature = "std")]
 use crate::GrainIdPrefix;
+use ::serde::{Deserialize, Serialize, de::Error};
 
 impl Serialize for GrainId {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>

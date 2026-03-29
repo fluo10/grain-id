@@ -48,4 +48,8 @@ macro_rules! impl_hash_command {
 
 impl_hash_command!(Md5Args, md5::Md5, "Generate grain-id from MD5 hash");
 impl_hash_command!(Sha1Args, sha1::Sha1, "Generate grain-id from SHA-1 hash");
-impl_hash_command!(Sha256Args, sha2::Sha256, "Generate grain-id from SHA-256 hash");
+impl_hash_command!(
+    Sha256Args,
+    sha2::Sha256,
+    "Generate grain-id from SHA-256 hash"
+);

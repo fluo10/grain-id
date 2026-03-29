@@ -137,8 +137,10 @@ impl FromStr for GrainIdPrefix {
         }
         let mut value: u64 = 0;
         for (index, c) in s.chars().enumerate() {
-            let u5 = char_to_u5(c)
-                .ok_or(Error::InvalidCharacter { character: c, index })?;
+            let u5 = char_to_u5(c).ok_or(Error::InvalidCharacter {
+                character: c,
+                index,
+            })?;
             let shift = 5 * (6 - index as u32);
             value |= (u5 as u64) << shift;
         }
@@ -235,7 +237,10 @@ mod tests {
         let result = "a!".parse::<GrainIdPrefix>();
         assert!(matches!(
             result,
-            Err(Error::InvalidCharacter { character: '!', index: 1 })
+            Err(Error::InvalidCharacter {
+                character: '!',
+                index: 1
+            })
         ));
     }
 }
