@@ -25,7 +25,7 @@ sha1 = { version = "0.10", default-features = false }
 sha2 = { version = "0.10", default-features = false }
 
 [dev-dependencies]
-digest = { version = "0.10", default-features = false }
+digest = { version = "0.11", default-features = false }
 grain-id = { path = "../..", version = "0.14.0", features = ["digest"] }
 md-5 = { version = "0.10", default-features = false }
 sha1 = { version = "0.10", default-features = false }
