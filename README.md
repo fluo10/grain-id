@@ -29,10 +29,10 @@ grain-id bridges the gap between human readability and technical requirements.
 Add this to your `Cargo.toml`:
 ```toml
 [dependencies]
-grain-id = "0.14.0"
+grain-id = "0.14.1"
 
 # With optional features
-grain-id = { version = "0.14.0", features = ["arbitrary", "serde", "rusqlite", "sea-orm", "prost", "redb", "schemars"] }
+grain-id = { version = "0.14.1", features = ["arbitrary", "serde", "rusqlite", "sea-orm", "prost", "redb", "schemars"] }
 ```
 
 ### For no_std Environments
@@ -41,7 +41,7 @@ This crate support `no_std`.
 For `no_std` environment, you'll need to disable default features.
 ```toml
 [dependencies]
-grain-id = { version = "0.14.0", default-features = false }
+grain-id = { version = "0.14.1", default-features = false }
 ```
 
 ## Features
