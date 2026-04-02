@@ -99,10 +99,6 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
       - name: Publish grain-id to crates.io
-        run: cargo publish -p grain-id
-        env:
-          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        run: cargo publish -p grain-id --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
       - name: Publish grain-id-cli to crates.io
-        run: cargo publish -p grain-id-cli
-        env:
-          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+        run: cargo publish -p grain-id-cli --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
