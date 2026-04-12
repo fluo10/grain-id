@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 0.14.2 - 2026-04-12
+
+### Changed
+
+- Bump `redb` from 3.1.0 to 4.0.0
+- Bump `jsonschema` (dev) from 0.45 to 0.46
+- Bump `actions/checkout` from v4 to v6
+- Bump `actions/upload-artifact` from v4 to v7
+- Bump `actions/download-artifact` from v4 to v8
+
+### Added
+
+- Add `publish` job to release workflow for automatic publishing to crates.io
+- Add Dependabot configuration for GitHub Actions
+- Add workflow to auto-merge Dependabot patch updates
+- Group Cargo patch dependency updates in Dependabot
+
 ## 0.14.1 - 2026-04-03
 
 ### Changed
