@@ -4,9 +4,16 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "friday"
     exclude-paths:
       - "fuzz"
+    groups:
+      cargo-patch:
+        update-types:
+          - "patch"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "friday"
