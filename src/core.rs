@@ -522,6 +522,34 @@ impl GrainId {
         GrainId::from_u64_lossy(self.to_u64().wrapping_sub(rhs.to_u64()))
     }
 
+    /// Creates a `GrainId` from the leading (most significant) 35 bits of a 5-byte array.
+    ///
+    /// This is useful for generating a compact identifier from a pre-computed hash,
+    /// public key, or any arbitrary byte sequence.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use grain_id::*;
+    /// // Extract leading 35 bits from a byte array
+    /// let bytes = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF];
+    /// let id = GrainId::from_byte_prefix(&bytes);
+    /// assert_eq!(id, GrainId::MAX);
+    ///
+    /// // For longer data, slice the first 5 bytes
+    /// let hash: [u8; 32] = [0; 32];
+    /// let id = GrainId::from_byte_prefix(hash[..5].try_into().unwrap());
+    /// assert_eq!(id, GrainId::NIL);
+    /// ```
+    pub const fn from_byte_prefix(bytes: &[u8; 5]) -> Self {
+        let value = (bytes[0] as u64) << 27
+            | (bytes[1] as u64) << 19
+            | (bytes[2] as u64) << 11
+            | (bytes[3] as u64) << 3
+            | (bytes[4] as u64) >> 5;
+        Self::from_u64_lossy(value)
+    }
+
     /// Increments the value by 1, wrapping around to [`GrainId::NIL`] on overflow.
     ///
     /// # Examples
