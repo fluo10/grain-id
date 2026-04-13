@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+## 0.15.0 - 2026-04-14
+
+### Added
+
+- `GrainId::from_byte_prefix` public method for constructing an ID from a byte prefix
+- Byte prefix/suffix API for range-based queries
+
+### Changed
+
+- Deprecate legacy bytes methods in favor of new prefix/suffix API
+
+### Removed
+
+- `redb` feature and its integration
+
 ## 0.14.2 - 2026-04-12
 
 ### Changed
