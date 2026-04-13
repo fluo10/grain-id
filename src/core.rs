@@ -239,6 +239,7 @@ impl GrainId {
         Self::from_u64_lossy(decisecs as u64)
     }
 
+    #[deprecated(since = "0.15.0", note = "Use `to_u64().to_be_bytes()` instead.")]
     #[doc = crate::macros::doc_to_bytes!("big endian")]
     ///
     /// # Examples
@@ -255,6 +256,7 @@ impl GrainId {
         self.0.to_be_bytes()
     }
 
+    #[deprecated(since = "0.15.0", note = "Use `to_u64().to_le_bytes()` instead.")]
     #[doc = crate::macros::doc_to_bytes!("little endian")]
     ///
     /// # Examples
@@ -271,6 +273,10 @@ impl GrainId {
         self.0.to_le_bytes()
     }
 
+    #[deprecated(
+        since = "0.15.0",
+        note = "Use `GrainId::from_u64(u64::from_be_bytes(bytes))?` instead."
+    )]
     #[doc = crate::macros::doc_from_bytes!("big endian", Self::from_be_bytes_lossy)]
     ///
     /// # Examples
@@ -294,6 +300,10 @@ impl GrainId {
         Self::from_u64(u64::from_be_bytes(bytes))
     }
 
+    #[deprecated(
+        since = "0.15.0",
+        note = "Use `GrainId::from_u64(u64::from_le_bytes(bytes))?` instead."
+    )]
     #[doc = crate::macros::doc_from_bytes!("little endian", Self::from_le_bytes_lossy)]
     ///
     /// # Examples
@@ -317,6 +327,10 @@ impl GrainId {
         Self::from_u64(u64::from_le_bytes(bytes))
     }
 
+    #[deprecated(
+        since = "0.15.0",
+        note = "Use `GrainId::from_u64_lossy(u64::from_be_bytes(bytes))` instead."
+    )]
     #[doc = crate::macros::doc_from_bytes_lossy!("big endian")]
     ///
     /// # Examples
@@ -343,6 +357,10 @@ impl GrainId {
     pub fn from_be_bytes_lossy(bytes: [u8; 8]) -> Self {
         Self::from_u64_lossy(u64::from_be_bytes(bytes))
     }
+    #[deprecated(
+        since = "0.15.0",
+        note = "Use `GrainId::from_u64_lossy(u64::from_le_bytes(bytes))` instead."
+    )]
     #[doc = crate::macros::doc_from_bytes_lossy!("little endian")]
     ///
     /// # Examples
@@ -369,6 +387,7 @@ impl GrainId {
         Self::from_u64_lossy(u64::from_le_bytes(bytes))
     }
 
+    #[deprecated(since = "0.15.0", note = "Use `to_byte_suffix()` instead.")]
     #[doc = crate::macros::doc_to_bytes!("big endian", compact)]
     ///
     /// # Examples
@@ -386,6 +405,10 @@ impl GrainId {
         [bytes[3], bytes[4], bytes[5], bytes[6], bytes[7]]
     }
 
+    #[deprecated(
+        since = "0.15.0",
+        note = "Use `to_u64().to_le_bytes()` for an 8-byte little-endian representation."
+    )]
     #[doc = crate::macros::doc_to_bytes!("little endian", compact)]
     ///
     /// # Examples
@@ -403,6 +426,10 @@ impl GrainId {
         [bytes[0], bytes[1], bytes[2], bytes[3], bytes[4]]
     }
 
+    #[deprecated(
+        since = "0.15.0",
+        note = "Use `from_byte_suffix()` for lossy conversion, or `GrainId::from_u64(u64::from_be_bytes([0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4]]))?` for checked conversion."
+    )]
     #[doc = crate::macros::doc_from_bytes!("big endian", compact)]
     ///
     /// # Examples
@@ -423,9 +450,13 @@ impl GrainId {
     /// # }
     /// ```
     pub fn from_be_bytes_compact(bytes: [u8; 5]) -> Result<Self, Error> {
-        Self::from_be_bytes([0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4]])
+        Self::from_u64(u64::from_be_bytes([0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4]]))
     }
 
+    #[deprecated(
+        since = "0.15.0",
+        note = "Use `GrainId::from_u64(u64::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0]))?` instead."
+    )]
     #[doc = crate::macros::doc_from_bytes!("little endian", compact)]
     ///
     /// # Examples
@@ -446,9 +477,10 @@ impl GrainId {
     /// # }
     /// ```
     pub fn from_le_bytes_compact(bytes: [u8; 5]) -> Result<Self, Error> {
-        Self::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0])
+        Self::from_u64(u64::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0]))
     }
 
+    #[deprecated(since = "0.15.0", note = "Use `from_byte_suffix()` instead.")]
     #[doc = crate::macros::doc_from_bytes_lossy!("big endian", compact)]
     ///
     /// # Examples
@@ -472,9 +504,13 @@ impl GrainId {
     /// # }
     /// ```
     pub fn from_be_bytes_compact_lossy(bytes: [u8; 5]) -> Self {
-        Self::from_be_bytes_lossy([0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4]])
+        Self::from_u64_lossy(u64::from_be_bytes([0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4]]))
     }
 
+    #[deprecated(
+        since = "0.15.0",
+        note = "Use `GrainId::from_u64_lossy(u64::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0]))` instead."
+    )]
     #[doc = crate::macros::doc_from_bytes_lossy!("little endian", compact)]
     ///
     /// # Examples
@@ -498,7 +534,7 @@ impl GrainId {
     /// # }
     /// ```
     pub fn from_le_bytes_compact_lossy(bytes: [u8; 5]) -> Self {
-        Self::from_le_bytes_lossy([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0])
+        Self::from_u64_lossy(u64::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0]))
     }
 
     /// Wrapping (modular) subtraction. Computes `self - rhs`, wrapping around at the boundary of the type.
@@ -548,6 +584,94 @@ impl GrainId {
             | (bytes[3] as u64) << 3
             | (bytes[4] as u64) >> 5;
         Self::from_u64_lossy(value)
+    }
+
+    /// Creates a `GrainId` from the trailing (least significant) 35 bits of a 5-byte array.
+    ///
+    /// This is the counterpart to [`from_byte_prefix`](Self::from_byte_prefix).
+    /// The upper 5 bits of the first byte are ignored.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use grain_id::*;
+    /// // Extract trailing 35 bits from a byte array
+    /// let bytes = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF];
+    /// let id = GrainId::from_byte_suffix(&bytes);
+    /// assert_eq!(id, GrainId::MAX);
+    ///
+    /// // Upper 5 bits of the first byte are ignored
+    /// let bytes = [0xF8, 0x00, 0x00, 0x00, 0x00];
+    /// let id = GrainId::from_byte_suffix(&bytes);
+    /// assert_eq!(id, GrainId::NIL);
+    /// ```
+    pub const fn from_byte_suffix(bytes: &[u8; 5]) -> Self {
+        let value = ((bytes[0] & 0x07) as u64) << 32
+            | (bytes[1] as u64) << 24
+            | (bytes[2] as u64) << 16
+            | (bytes[3] as u64) << 8
+            | (bytes[4] as u64);
+        Self::from_u64_unchecked(value)
+    }
+
+    /// Returns a 5-byte array with the `GrainId` value stored in the leading (most significant) 35 bits.
+    ///
+    /// This is the counterpart to [`from_byte_prefix`](Self::from_byte_prefix).
+    /// The lower 5 bits of the last byte are always zero.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use grain_id::*;
+    /// # fn main() -> Result<(), Error> {
+    /// let bytes = GrainId::from_u64(0x123456789)?.to_byte_prefix();
+    /// assert_eq!(bytes, [0x24, 0x68, 0xAC, 0xF1, 0x20]);
+    ///
+    /// // Round-trip
+    /// let id = GrainId::from_u64(0x123456789)?;
+    /// assert_eq!(GrainId::from_byte_prefix(&id.to_byte_prefix()), id);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub const fn to_byte_prefix(self) -> [u8; 5] {
+        let v = self.0;
+        [
+            (v >> 27) as u8,
+            (v >> 19) as u8,
+            (v >> 11) as u8,
+            (v >> 3) as u8,
+            ((v & 0x07) << 5) as u8,
+        ]
+    }
+
+    /// Returns a 5-byte array with the `GrainId` value stored in the trailing (least significant) 35 bits.
+    ///
+    /// This is the counterpart to [`from_byte_suffix`](Self::from_byte_suffix).
+    /// The upper 5 bits of the first byte are always zero.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use grain_id::*;
+    /// # fn main() -> Result<(), Error> {
+    /// let bytes = GrainId::from_u64(0x123456789)?.to_byte_suffix();
+    /// assert_eq!(bytes, [0x01, 0x23, 0x45, 0x67, 0x89]);
+    ///
+    /// // Round-trip
+    /// let id = GrainId::from_u64(0x123456789)?;
+    /// assert_eq!(GrainId::from_byte_suffix(&id.to_byte_suffix()), id);
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub const fn to_byte_suffix(self) -> [u8; 5] {
+        let v = self.0;
+        [
+            (v >> 32) as u8,
+            (v >> 24) as u8,
+            (v >> 16) as u8,
+            (v >> 8) as u8,
+            v as u8,
+        ]
     }
 
     /// Increments the value by 1, wrapping around to [`GrainId::NIL`] on overflow.
