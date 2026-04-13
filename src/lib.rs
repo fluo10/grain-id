@@ -28,7 +28,7 @@
 //! grain-id = "0.14.1"
 //!
 //! # With optional features
-//! grain-id = { version = "0.14.1", features = ["arbitrary", "serde", "rusqlite", "sea-orm", "prost", "redb", "schemars"] }
+//! grain-id = { version = "0.15.0", features = ["arbitrary", "serde", "rusqlite", "sea-orm", "prost", "schemars"] }
 //! ```
 //!
 //! ## For no_std Environments
@@ -56,7 +56,6 @@
 //! - `rusqlite`: SQLite database integration
 //! - `sea-orm`: SeaORM ORM integration
 //! - `prost`: Protocol Buffers support
-//! - `redb`: `redb` integration
 //! - `schemars`: JSON Schema support
 //!
 //! # Examples
@@ -130,9 +129,6 @@ mod serde;
 
 #[cfg(feature = "prost")]
 mod prost;
-
-#[cfg(feature = "redb")]
-mod redb;
 
 #[cfg(feature = "rusqlite")]
 mod rusqlite;
