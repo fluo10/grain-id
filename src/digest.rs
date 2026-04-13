@@ -1,15 +1,5 @@
 use super::*;
 
-fn extract_35_bits(bytes: &[u8]) -> GrainId {
-    debug_assert!(bytes.len() >= 5);
-    let value = (bytes[0] as u64) << 27
-        | (bytes[1] as u64) << 19
-        | (bytes[2] as u64) << 11
-        | (bytes[3] as u64) << 3
-        | (bytes[4] as u64) >> 5;
-    GrainId::from_u64_lossy(value)
-}
-
 impl GrainId {
     /// Generate a [`GrainId`] from arbitrary bytes using a fixed-output hash function.
     ///
@@ -40,7 +30,7 @@ impl GrainId {
             "digest output is {} bytes, but at least 5 bytes are required",
             output.len()
         );
-        extract_35_bits(&output)
+        Self::from_byte_prefix(output[..5].try_into().unwrap())
     }
 
     /// Generate a [`GrainId`] from arbitrary bytes using an extendable-output function (XOF).
@@ -70,6 +60,6 @@ impl GrainId {
         let mut reader = hasher.finalize_xof();
         let mut buf = [0u8; 5];
         reader.read(&mut buf);
-        extract_35_bits(&buf)
+        Self::from_byte_prefix(&buf)
     }
 }
