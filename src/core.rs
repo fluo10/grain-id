@@ -450,7 +450,9 @@ impl GrainId {
     /// # }
     /// ```
     pub fn from_be_bytes_compact(bytes: [u8; 5]) -> Result<Self, Error> {
-        Self::from_u64(u64::from_be_bytes([0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4]]))
+        Self::from_u64(u64::from_be_bytes([
+            0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4],
+        ]))
     }
 
     #[deprecated(
@@ -477,7 +479,9 @@ impl GrainId {
     /// # }
     /// ```
     pub fn from_le_bytes_compact(bytes: [u8; 5]) -> Result<Self, Error> {
-        Self::from_u64(u64::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0]))
+        Self::from_u64(u64::from_le_bytes([
+            bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0,
+        ]))
     }
 
     #[deprecated(since = "0.15.0", note = "Use `from_byte_suffix()` instead.")]
@@ -504,7 +508,9 @@ impl GrainId {
     /// # }
     /// ```
     pub fn from_be_bytes_compact_lossy(bytes: [u8; 5]) -> Self {
-        Self::from_u64_lossy(u64::from_be_bytes([0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4]]))
+        Self::from_u64_lossy(u64::from_be_bytes([
+            0, 0, 0, bytes[0], bytes[1], bytes[2], bytes[3], bytes[4],
+        ]))
     }
 
     #[deprecated(
@@ -534,7 +540,9 @@ impl GrainId {
     /// # }
     /// ```
     pub fn from_le_bytes_compact_lossy(bytes: [u8; 5]) -> Self {
-        Self::from_u64_lossy(u64::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0]))
+        Self::from_u64_lossy(u64::from_le_bytes([
+            bytes[0], bytes[1], bytes[2], bytes[3], bytes[4], 0, 0, 0,
+        ]))
     }
 
     /// Wrapping (modular) subtraction. Computes `self - rhs`, wrapping around at the boundary of the type.
