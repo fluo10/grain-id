@@ -1,0 +1,44 @@
+[workspace]
+# 公開クレートは統一バージョン（workspace.package.version）で運用する。
+# 既存タグ運用に合わせて、ワークスペース全体で 1 つの `v{version}` タグと
+# GitHub release だけを作る。crates.io publish は各クレート個別に行う。
+changelog_update = true
+dependencies_update = true
+publish = true
+release = true
+git_release_enable = false
+git_tag_enable = false
+pr_branch_prefix = "release-plz/"
+pr_labels = ["release"]
+
+# メイン crate がタグと GitHub release を担当する。
+[[package]]
+name = "grain-id"
+git_tag_enable = true
+git_release_enable = true
+git_tag_name = "v{{ version }}"
+git_release_name = "v{{ version }}"
+version_group = "workspace"
+
+[[package]]
+name = "grain-id-cli"
+version_group = "workspace"
+
+# Cargo.toml 側で publish = false の crate は release-plz 側にも明示する
+# （per-package の publish 設定は Cargo.toml と一致している必要がある）。
+[[package]]
+name = "grain-id-prost-example"
+release = false
+publish = false
+
+[changelog]
+# 既存 CHANGELOG.md のヘッダーをそのまま維持し、新規エントリは
+# このヘッダーの下に挿入される（既存履歴は保持される）。
+header = """# Changelog
+
+All notable changes to this workspace will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+"""
