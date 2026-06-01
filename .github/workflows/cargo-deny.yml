@@ -1,0 +1,27 @@
+name: cargo-deny
+
+# License compatibility, advisory (RUSTSEC) scanning, banned crates, and
+# unknown-source checks. The weekly schedule catches newly-filed advisories
+# against deps that haven't changed.
+
+on:
+  pull_request:
+    paths:
+      - "**/Cargo.toml"
+      - "Cargo.lock"
+      - "deny.toml"
+      - ".github/workflows/cargo-deny.yml"
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  cargo-deny:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          command: check

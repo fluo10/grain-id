@@ -1,0 +1,42 @@
+# cargo-deny config. Run locally with `cargo deny check`.
+# Reference: https://embarkstudios.github.io/cargo-deny/
+
+[graph]
+# Restrict the dep graph to the platforms CI exercises (see ci.yml). This
+# drops UEFI-only transitive deps like `r-efi` (LGPL-2.1-or-later) pulled in
+# by `getrandom`, so we don't need to globally allow their licenses.
+targets = [
+    "x86_64-unknown-linux-gnu",
+    "aarch64-unknown-linux-gnu",
+    "aarch64-apple-darwin",
+    "x86_64-pc-windows-msvc",
+]
+all-features = true
+
+[advisories]
+yanked = "warn"
+
+[licenses]
+# Permissive SPDX identifiers actually present in the resolved graph.
+# Re-survey with `cargo deny list --layout license` before widening.
+allow = [
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "MIT",
+    "Unicode-3.0",
+    "Unlicense",
+    "Zlib",
+]
+confidence-threshold = 0.93
+
+[bans]
+# Duplicate-version warnings are too noisy in real Rust workspaces (every
+# transitively-pulled `syn`/`bitflags`/`hashbrown` version trips it).
+multiple-versions = "allow"
+wildcards = "deny"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []
